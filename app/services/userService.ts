@@ -10,18 +10,15 @@ interface Usuario {
     password: string;
 }
 
-class ErroValidacao extends Error {
-    public erros: string[];
-
-    constructor(erros: string[]) {
-        super("Erro de validação");
-        this.erros = erros;
-    }
+interface ResetPasswordBody {
+    email: string,
+    resetCode: string,
+    newPassword: string
 }
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
-class UsuarioService extends ApiService {
+class UserService extends ApiService {
     constructor() {
         super('')
     }
@@ -38,6 +35,18 @@ class UsuarioService extends ApiService {
     salvar(usuario: Usuario): Promise<any> {
         return this.post('/register', usuario);
     }
+
+    sendEmailConfirmation(email: string): Promise<any> {
+        return this.post('/resendConfirmationEmail', email);
+    }
+
+    forgotPassword(email: string): Promise<any> {
+        return this.post('/forgotPassword', email)
+    }
+
+    resetPassword(resetPasswordBody: ResetPasswordBody): Promise<any> {
+        return this.post('/forgotPassword', this.resetPassword)
+    }
 }
 
-export default UsuarioService;
+export default UserService;

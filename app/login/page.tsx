@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from './login.module.css';
-import UsuarioService from '../services/usuarioService';
+import UserService from '../services/userService';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import Link from 'next/link';
@@ -23,7 +23,7 @@ const LoginPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
 
-    const usuarioService = new UsuarioService();
+    const usuarioService = new UserService();
 
     const {
         register,

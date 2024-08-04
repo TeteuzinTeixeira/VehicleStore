@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from './save-user.module.css';
-import UsuarioService from '../services/usuarioService';
+import UserService from '../services/userService';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ interface Credenciais {
 const SaveUserPage: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
-    const usuarioService = new UsuarioService();
+    const usuarioService = new UserService();
 
     const {
         register,
