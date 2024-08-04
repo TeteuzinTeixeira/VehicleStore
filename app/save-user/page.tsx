@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import styles from './login.module.css';
+import styles from './save-user.module.css';
 import UsuarioService from '../services/usuarioService';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -18,10 +18,8 @@ interface Credenciais {
     password: string;
 }
 
-const LoginPage: React.FC = () => {
+const SaveUserPage: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState<string | null>(null);
 
     const usuarioService = new UsuarioService();
 
@@ -41,11 +39,21 @@ const LoginPage: React.FC = () => {
                 password: data.password,
             };
     
-            await usuarioService.login(credenciais);
-            toast.success('Login efetuado com sucesso 😀!');
+            await usuarioService.salvar(credenciais);
+            toast.success('Cadastro efetuado com sucesso 😀!');
             reset();
         } catch (error: any) {
-            toast.error('Email ou senha invalidos 😒')
+            let errorMessage = 'Erro ao fazer cadastro 😒';
+
+            if (error.response && error.response.data) {
+                const responseErrors = error.response.data.errors;
+                if (Array.isArray(responseErrors)) {
+                    errorMessage = responseErrors.join(', ');
+                } else if (typeof responseErrors === 'object') {
+                    errorMessage = Object.values(responseErrors).flat().join(', ');
+                }
+            }
+            toast.error(errorMessage);
         } finally {
             setLoading(false);
         }
@@ -55,7 +63,7 @@ const LoginPage: React.FC = () => {
         <div className={styles.loginContainer}>
             <div className={styles.loginBox}>
                 <div className={styles.loginTitleBox}>
-                    <h1>Login</h1>
+                    <h1>Cadastre-se</h1>
                 </div>
 
                 <div className={styles.loginFormContainer}>
@@ -82,21 +90,19 @@ const LoginPage: React.FC = () => {
                             </div>
                         </div>
 
-                        {error && <p className={styles.errorMessage}>{error}</p>}
-                        {success && <p className={styles.successMessage}>{success}</p>}
-
                         <div className={styles.loginButtonBox}>
                             <button type="submit" disabled={loading}>
-                                Entrar
+                                Cadastrar
                             </button>
                         </div>
-                        <Link href="/save-user" className={styles.cadastre}>Ainda não possui usuario? Cadastre-se</Link>
+                        <Link href="/login" className={styles.login}>Possui usuario? Efetue login</Link>
                     </form>
                 </div>
             </div>
+
             {loading && <LoadingOverlay />}
         </div>
     );
 };
 
-export default LoginPage;
+export default SaveUserPage;

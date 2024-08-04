@@ -29,32 +29,14 @@ class UsuarioService extends ApiService {
     async login(credenciais: Credenciais): Promise<any> {
         try {
             console.log(baseURL)
-            return await this.post('/login', credenciais);
+            return await this.post('/login?useCookies=true&useSessionCookies=true', credenciais);
         } catch (error) {
             throw new Error('Erro ao fazer login. Verifique suas credenciais e tente novamente.');
         }
     }
 
     salvar(usuario: Usuario): Promise<any> {
-        return this.post('/', usuario);
-    }
-
-    validar(usuario: Usuario): void {
-        const erros: string[] = [];
-
-        if (!usuario.email) {
-            erros.push('O campo Email é obrigatório.');
-        } else if (!usuario.email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/)) {
-            erros.push('Informe um Email válido.');
-        }
-
-        if (!usuario.password) {
-            erros.push('O campo password é obrigatório.');
-        }
-
-        if (erros.length > 0) {
-            throw new ErroValidacao(erros);
-        }
+        return this.post('/register', usuario);
     }
 }
 
