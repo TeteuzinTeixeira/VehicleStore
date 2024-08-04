@@ -1,0 +1,93 @@
+/* login.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.loginContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #FFF;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+.loginBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+
+    padding: 5em;
+
+    border-radius: 3rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    width: 90%;
+    max-width: 500px;
+}
+
+.loginTitleBox h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+.loginFormContainer {
+    width: 100%;
+}
+
+.loginFormContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.loginFormInputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.loginFormBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.loginFormBox input {
+    padding: 1rem 0.7rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    outline: none;
+}
+
+.loginButtonBox {
+    display: flex;
+    justify-content: center;
+}
+
+.loginButtonBox button {
+    font-size: 1em;
+    font-weight: 700;
+    padding: 1.5em 2em;
+    width: 80%;
+    background-color: #000;
+    color: #FFF;
+    border-radius: 1rem;
+    border: 2px solid #000;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+.loginButtonBox button:hover {
+    background-color: #FFF;
+    color: #000;
+    border: 2px solid #000;
+}
+
+.errorMessage {
+    color: crimson;
+}
