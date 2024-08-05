@@ -90,7 +90,8 @@ const LoginPage: React.FC = () => {
                                 Entrar
                             </button>
                         </div>
-                        <Link href="/save-user" className={styles.cadastre}>Ainda não possui usuario? Cadastre-se</Link>
+                        <Link href="/save-user" className={styles.cadastre}>Ainda não possui cadastro? Cadastre-se</Link>
+                        <Link href="/forgot-password" className={styles.cadastre}>Esqueci minha senha</Link>
                     </form>
                 </div>
             </div>
